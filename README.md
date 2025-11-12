@@ -49,8 +49,12 @@ conda activate analysis
 ```
 pip install -r requirements.txt
 ```
-
-3.安装 PyRosetta：
+3.安装USalign和TMalign
+```
+conda install bioconda::tmalign
+conda install bioconda::usalign
+```
+4.安装 PyRosetta：
 
 ```
 # 在 Python 交互式环境中运行，其中pyrosetta在requirements.txt中已经安装
@@ -58,7 +62,7 @@ import pyrosetta_installer
 pyrosetta_installer.install_pyrosetta()
 ```
 
-4.验证 PyRosetta 是否正常：
+5.验证 PyRosetta 是否正常：
 
 ```
 import pyrosetta
