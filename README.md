@@ -22,6 +22,12 @@ Nocta/
 ### 2.1 脚本安装
 
 使用 Conda 管理 Python 环境，Nocta 提供了自动化安装脚本`setup_env.sh`：
+P.S 如果遇到syntax error等错误，可能是因为文件在 Windows 下编辑过 ，可能含有 **CRLF 换行符**，在 Linux 下会报错，运行以下命令可以解决：
+
+```
+dos2unix setup.sh
+```
+之后运行：
 
 ```bash
 bash setup_env.sh
