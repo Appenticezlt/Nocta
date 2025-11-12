@@ -109,6 +109,111 @@ print("PyRosetta successfully initialized!")
 | 8           | 同时跑 8 个         | 高并行度 | 16核机器推荐     |
 | 16+         | CPU 饱和            | 最高并发 | 超算或多核服务器 |
 
+## 5.使用指南
+
+### 5.1 仅运行TMalign 比对（不输出结果）
+
+```bash
+python main.py --input data/ --output results/ --useTMalign
+```
+
+### 5.2.仅运行 Rosetta 能量计算
+
+```
+python main.py --input data/ --output results/ --useEnergy
+```
+
+可选：
+
+- `--energynum_workers 8`：多线程加速能量计算
+- `--saveenergy_results`：保存能量计算结果
+
+------
+
+### 3. 仅计算 Shannon 熵
+
+```
+python main.py --input data/ --output results/ --doentropy
+```
+
+- 自动读取 PDB 文件提取序列，如果已存在 `sequences.fasta`，将直接使用
+- 结果保存为 Excel 文件 `Shannon_entropy.xlsx`
+
+------
+
+### 4.层级聚类（可选）
+
+- 在运行过 TMalign 后，可以进行聚类分析：
+
+```
+python main.py --input data/ --output results/ --useTMalign \
+               --doClusterRMSD --doClusterTMscore \
+               --cluster_method average --cluster_threshold 2.0
+```
+
+- `--doClusterRMSD`：基于 RMSD 的层级聚类
+- `--doClusterTMscore`：基于 TM-score 的层级聚类
+- `--cluster_method`：聚类方法（single / complete / average / ward）
+- `--cluster_threshold`：距离阈值（RMSD 或 1-TM-score）
+
+------
+
+### 5.可视化模块（需先生成数据）
+
+- TMalign 热图：
+
+```
+python main.py --visualize_tmalign
+```
+
+- 聚类树状图：
+
+```
+python main.py --visualize_cluster
+```
+
+- 能量分布图：
+
+```
+python main.py --visualize_energy
+```
+
+- Shannon 熵柱状图：
+
+```
+python main.py --visualize_entropy
+```
+
+- 汇总可视化：
+
+```
+python main.py --visualize_combined
+```
+
+> 注意：可视化模块需要对应计算结果已经存在，否则会报错。
+
+------
+
+### 6.一条命令运行全部流程
+
+```
+python main.py --input data/ --output results/ \
+               --useTMalign --savetmalign_results \
+               --doClusterRMSD --doClusterTMscore \
+               --useEnergy --saveenergy_results \
+               --doentropy \
+               --visualize_tmalign --visualize_cluster \
+               --visualize_energy --visualize_entropy \
+               --visualize_combined
+```
+
+- 这条命令会执行：
+  1. 结构比对 (TMalign / USalign)
+  2. 层级聚类
+  3. 能量计算
+  4. Shannon 熵计算
+  5. 可视化各模块并生成汇总图
+
 ## 🔹 作者
 
 未烁寿 (博士生研究方向：我也不知道最后会是什么方向)
