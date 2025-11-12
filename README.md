@@ -98,3 +98,9 @@ print("PyRosetta successfully initialized!")
 | 4           | 同时跑 4 个 USalign | 4× 加速  | 轻量任务         |
 | 8           | 同时跑 8 个         | 高并行度 | 16核机器推荐     |
 | 16+         | CPU 饱和            | 最高并发 | 超算或多核服务器 |
+
+## 🔹 作者
+
+未烁寿 (博士生研究方向：我也不知道最后会是什么方向)
+
+GitHub: https://github.com/Appenticezlt/Nocta
